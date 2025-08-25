@@ -11,6 +11,7 @@ import (
 // is compatible with the kratos package it is being compiled against.
 const _ = errors.SupportPackageIsVersion1
 
+// enmu类型似乎只能从0开始
 func IsDbFailed(err error) bool {
 	if err == nil {
 		return false
@@ -19,6 +20,7 @@ func IsDbFailed(err error) bool {
 	return e.Reason == ErrorReason_DB_FAILED.String() && e.Code == 500
 }
 
+// enmu类型似乎只能从0开始
 func ErrorDbFailed(format string, args ...interface{}) *errors.Error {
 	return errors.New(500, ErrorReason_DB_FAILED.String(), fmt.Sprintf(format, args...))
 }

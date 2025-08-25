@@ -103,6 +103,8 @@ message ReviewInfo{
 // 用户评价列表的请求
 message ListReviewByUserIdRequest{
 	int64 userId = 1 [(validate.rules).int64 = {gt: 0}];
+	int32 page = 2 [(validate.rules).int32 = {gt: 0}];
+	int32 size = 3 [(validate.rules).int32 = {gt: 0}];
 }
 // 用户评价列表的返回值
 message ListReviewByUserIdReply{
@@ -144,7 +146,6 @@ message AuditReviewRequest {
 	string opReason = 4 [(validate.rules).string = {min_len: 2}];
 	optional string opRemarks = 5;
 }
-
 // 审核评价的返回值
 message AuditReviewReply {
 	int64 reviewId = 1;
@@ -157,8 +158,8 @@ message AuditAppealRequest{
 	int32 status = 2 [(validate.rules).int32 = {gt: 0}];
 	string opUser = 3 [(validate.rules).string = {min_len: 2}];
 	optional string opRemarks = 4;
+	int64 reviewID = 5 [(validate.rules).int64 = {gt: 0}];
 }
-
 // 对申诉进行审核的返回值
 message AuditAppealReply{
 	int64 appealId = 1;

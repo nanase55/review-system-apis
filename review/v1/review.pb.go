@@ -386,6 +386,8 @@ func (x *ReviewInfo) GetStatus() int32 {
 type ListReviewByUserIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Size          int32                  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -423,6 +425,20 @@ func (*ListReviewByUserIdRequest) Descriptor() ([]byte, []int) {
 func (x *ListReviewByUserIdRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
+	}
+	return 0
+}
+
+func (x *ListReviewByUserIdRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListReviewByUserIdRequest) GetSize() int32 {
+	if x != nil {
+		return x.Size
 	}
 	return 0
 }
@@ -861,6 +877,7 @@ type AuditAppealRequest struct {
 	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
 	OpUser        string                 `protobuf:"bytes,3,opt,name=opUser,proto3" json:"opUser,omitempty"`
 	OpRemarks     *string                `protobuf:"bytes,4,opt,name=opRemarks,proto3,oneof" json:"opRemarks,omitempty"`
+	ReviewID      int64                  `protobuf:"varint,5,opt,name=reviewID,proto3" json:"reviewID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -921,6 +938,13 @@ func (x *AuditAppealRequest) GetOpRemarks() string {
 		return *x.OpRemarks
 	}
 	return ""
+}
+
+func (x *AuditAppealRequest) GetReviewID() int64 {
+	if x != nil {
+		return x.ReviewID
+	}
+	return 0
 }
 
 // 对申诉进行审核的返回值
@@ -1002,9 +1026,11 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"\apicInfo\x18\b \x01(\tR\apicInfo\x12\x1c\n" +
 	"\tvideoInfo\x18\t \x01(\tR\tvideoInfo\x12\x16\n" +
 	"\x06status\x18\n" +
-	" \x01(\x05R\x06status\"<\n" +
+	" \x01(\x05R\x06status\"v\n" +
 	"\x19ListReviewByUserIdRequest\x12\x1f\n" +
-	"\x06userId\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\"H\n" +
+	"\x06userId\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\x12\x1b\n" +
+	"\x04page\x18\x02 \x01(\x05B\a\xfaB\x04\x1a\x02 \x00R\x04page\x12\x1b\n" +
+	"\x04size\x18\x03 \x01(\x05B\a\xfaB\x04\x1a\x02 \x00R\x04size\"H\n" +
 	"\x17ListReviewByUserIdReply\x12-\n" +
 	"\x04list\x18\x01 \x03(\v2\x19.api.review.v1.ReviewInfoR\x04list\"\xba\x01\n" +
 	"\x12ReplyReviewRequest\x12#\n" +
@@ -1037,12 +1063,13 @@ const file_review_v1_review_proto_rawDesc = "" +
 	"_opRemarks\"F\n" +
 	"\x10AuditReviewReply\x12\x1a\n" +
 	"\breviewId\x18\x01 \x01(\x03R\breviewId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\x05R\x06status\"\xac\x01\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\"\xd1\x01\n" +
 	"\x12AuditAppealRequest\x12#\n" +
 	"\bappealId\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\bappealId\x12\x1f\n" +
 	"\x06status\x18\x02 \x01(\x05B\a\xfaB\x04\x1a\x02 \x00R\x06status\x12\x1f\n" +
 	"\x06opUser\x18\x03 \x01(\tB\a\xfaB\x04r\x02\x10\x02R\x06opUser\x12!\n" +
-	"\topRemarks\x18\x04 \x01(\tH\x00R\topRemarks\x88\x01\x01B\f\n" +
+	"\topRemarks\x18\x04 \x01(\tH\x00R\topRemarks\x88\x01\x01\x12#\n" +
+	"\breviewID\x18\x05 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\breviewIDB\f\n" +
 	"\n" +
 	"_opRemarks\".\n" +
 	"\x10AuditAppealReply\x12\x1a\n" +

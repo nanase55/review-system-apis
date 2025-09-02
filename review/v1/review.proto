@@ -103,8 +103,8 @@ message ReviewInfo{
 // 用户评价列表的请求
 message ListReviewByUserIdRequest{
 	int64 userId = 1 [(validate.rules).int64 = {gt: 0}];
-	int32 page = 2 [(validate.rules).int32 = {gt: 0}];
-	int32 size = 3 [(validate.rules).int32 = {gt: 0}];
+	int64 lastId = 2 [(validate.rules).int64 = {gte: 0}];
+	int32 size = 3 [(validate.rules).int32 = {gt: 0,lt: 50}];
 }
 // 用户评价列表的返回值
 message ListReviewByUserIdReply{

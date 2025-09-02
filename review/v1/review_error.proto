@@ -12,5 +12,5 @@ enum ErrorReason{
     option (errors.default_code) = 500;
 
     DB_FAILED = 0 [(errors.code) = 500];          // enmu类型似乎只能从0开始
-    ORDER_REVIEWED = 100 [(errors.code) = 400];
+    ORDER_REVIEWED = 100 [(errors.code) = 409];
 }

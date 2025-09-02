@@ -112,6 +112,7 @@ message ListReviewByUserIdRequest{
 // 用户评价列表的返回值
 message ListReviewByUserIdReply{
 	repeated ReviewInfo list = 1;
+	int64 lastId = 2;	// 当前页最后一条记录的主键ID
 }
 
 // 回复评价的请求

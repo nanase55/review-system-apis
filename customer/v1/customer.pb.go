@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.31.0--rc2
-// source: customer/v1/customer.proto
+// source: api/customer/v1/customer.proto
 
 package v1
 
@@ -39,7 +39,7 @@ type CreateReviewRequest struct {
 
 func (x *CreateReviewRequest) Reset() {
 	*x = CreateReviewRequest{}
-	mi := &file_customer_v1_customer_proto_msgTypes[0]
+	mi := &file_api_customer_v1_customer_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -51,7 +51,7 @@ func (x *CreateReviewRequest) String() string {
 func (*CreateReviewRequest) ProtoMessage() {}
 
 func (x *CreateReviewRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_customer_v1_customer_proto_msgTypes[0]
+	mi := &file_api_customer_v1_customer_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +64,7 @@ func (x *CreateReviewRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateReviewRequest.ProtoReflect.Descriptor instead.
 func (*CreateReviewRequest) Descriptor() ([]byte, []int) {
-	return file_customer_v1_customer_proto_rawDescGZIP(), []int{0}
+	return file_api_customer_v1_customer_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateReviewRequest) GetOrderId() int64 {
@@ -132,7 +132,7 @@ type CreateReviewReply struct {
 
 func (x *CreateReviewReply) Reset() {
 	*x = CreateReviewReply{}
-	mi := &file_customer_v1_customer_proto_msgTypes[1]
+	mi := &file_api_customer_v1_customer_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -144,7 +144,7 @@ func (x *CreateReviewReply) String() string {
 func (*CreateReviewReply) ProtoMessage() {}
 
 func (x *CreateReviewReply) ProtoReflect() protoreflect.Message {
-	mi := &file_customer_v1_customer_proto_msgTypes[1]
+	mi := &file_api_customer_v1_customer_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -157,7 +157,7 @@ func (x *CreateReviewReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateReviewReply.ProtoReflect.Descriptor instead.
 func (*CreateReviewReply) Descriptor() ([]byte, []int) {
-	return file_customer_v1_customer_proto_rawDescGZIP(), []int{1}
+	return file_api_customer_v1_customer_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateReviewReply) GetReviewId() int64 {
@@ -167,11 +167,11 @@ func (x *CreateReviewReply) GetReviewId() int64 {
 	return 0
 }
 
-var File_customer_v1_customer_proto protoreflect.FileDescriptor
+var File_api_customer_v1_customer_proto protoreflect.FileDescriptor
 
-const file_customer_v1_customer_proto_rawDesc = "" +
+const file_api_customer_v1_customer_proto_rawDesc = "" +
 	"\n" +
-	"\x1acustomer/v1/customer.proto\x12\x0fapi.customer.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\"\xb3\x02\n" +
+	"\x1eapi/customer/v1/customer.proto\x12\x0fapi.customer.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17validate/validate.proto\"\xb3\x02\n" +
 	"\x13CreateReviewRequest\x12!\n" +
 	"\aorderId\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\aorderId\x12\x1f\n" +
 	"\x05score\x18\x02 \x01(\x05B\t\xfaB\x06\x1a\x04\x18\x05 \x00R\x05score\x12-\n" +
@@ -189,23 +189,23 @@ const file_customer_v1_customer_proto_rawDesc = "" +
 	"\x0fapi.customer.v1P\x01Z\x1breview-c/api/customer/v1;v1b\x06proto3"
 
 var (
-	file_customer_v1_customer_proto_rawDescOnce sync.Once
-	file_customer_v1_customer_proto_rawDescData []byte
+	file_api_customer_v1_customer_proto_rawDescOnce sync.Once
+	file_api_customer_v1_customer_proto_rawDescData []byte
 )
 
-func file_customer_v1_customer_proto_rawDescGZIP() []byte {
-	file_customer_v1_customer_proto_rawDescOnce.Do(func() {
-		file_customer_v1_customer_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_customer_v1_customer_proto_rawDesc), len(file_customer_v1_customer_proto_rawDesc)))
+func file_api_customer_v1_customer_proto_rawDescGZIP() []byte {
+	file_api_customer_v1_customer_proto_rawDescOnce.Do(func() {
+		file_api_customer_v1_customer_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_customer_v1_customer_proto_rawDesc), len(file_api_customer_v1_customer_proto_rawDesc)))
 	})
-	return file_customer_v1_customer_proto_rawDescData
+	return file_api_customer_v1_customer_proto_rawDescData
 }
 
-var file_customer_v1_customer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_customer_v1_customer_proto_goTypes = []any{
+var file_api_customer_v1_customer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_api_customer_v1_customer_proto_goTypes = []any{
 	(*CreateReviewRequest)(nil), // 0: api.customer.v1.CreateReviewRequest
 	(*CreateReviewReply)(nil),   // 1: api.customer.v1.CreateReviewReply
 }
-var file_customer_v1_customer_proto_depIdxs = []int32{
+var file_api_customer_v1_customer_proto_depIdxs = []int32{
 	0, // 0: api.customer.v1.Customer.CreateReview:input_type -> api.customer.v1.CreateReviewRequest
 	1, // 1: api.customer.v1.Customer.CreateReview:output_type -> api.customer.v1.CreateReviewReply
 	1, // [1:2] is the sub-list for method output_type
@@ -215,26 +215,26 @@ var file_customer_v1_customer_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_customer_v1_customer_proto_init() }
-func file_customer_v1_customer_proto_init() {
-	if File_customer_v1_customer_proto != nil {
+func init() { file_api_customer_v1_customer_proto_init() }
+func file_api_customer_v1_customer_proto_init() {
+	if File_api_customer_v1_customer_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_customer_v1_customer_proto_rawDesc), len(file_customer_v1_customer_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_customer_v1_customer_proto_rawDesc), len(file_api_customer_v1_customer_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_customer_v1_customer_proto_goTypes,
-		DependencyIndexes: file_customer_v1_customer_proto_depIdxs,
-		MessageInfos:      file_customer_v1_customer_proto_msgTypes,
+		GoTypes:           file_api_customer_v1_customer_proto_goTypes,
+		DependencyIndexes: file_api_customer_v1_customer_proto_depIdxs,
+		MessageInfos:      file_api_customer_v1_customer_proto_msgTypes,
 	}.Build()
-	File_customer_v1_customer_proto = out.File
-	file_customer_v1_customer_proto_goTypes = nil
-	file_customer_v1_customer_proto_depIdxs = nil
+	File_api_customer_v1_customer_proto = out.File
+	file_api_customer_v1_customer_proto_goTypes = nil
+	file_api_customer_v1_customer_proto_depIdxs = nil
 }

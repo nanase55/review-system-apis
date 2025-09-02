@@ -705,6 +705,28 @@ func (m *ListReviewByUserIdRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
+	if m.GetPage() <= 0 {
+		err := ListReviewByUserIdRequestValidationError{
+			field:  "Page",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetSize() <= 0 {
+		err := ListReviewByUserIdRequestValidationError{
+			field:  "Size",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return ListReviewByUserIdRequestMultiError(errors)
 	}
@@ -1724,6 +1746,19 @@ func (m *AuditAppealRequest) validate(all bool) error {
 		}
 		errors = append(errors, err)
 	}
+
+	if m.GetReviewID() <= 0 {
+		err := AuditAppealRequestValidationError{
+			field:  "ReviewID",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for OpReason
 
 	if m.OpRemarks != nil {
 		// no validation rules for OpRemarks

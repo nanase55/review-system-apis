@@ -27,7 +27,10 @@ service Review {
 	// C端查看userId下所有评价 
 	rpc ListReviewByUserId (ListReviewByUserIdRequest) returns (ListReviewByUserIdReply) {
 		option (google.api.http) = {
-			get: "/v1/{userId}/reviews",
+			get: "/v1/{userId}/reviews"
+			additional_bindings {
+            get: "/v1/{userId}/reviews?lastId={lastId}&size={size}"
+        }
 		};
 	}
 

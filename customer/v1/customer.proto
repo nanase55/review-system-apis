@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package api.customer.v1;
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+option go_package = "review-c/api/customer/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.customer.v1";
+
+service Customer {
+	rpc CreateReview (CreateReviewRequest) returns (CreateReviewReply){
+		option (google.api.http) = {
+			post: "c/v1/review/create",
+			body: "*"
+		};
+	};
+}
+
+message CreateReviewRequest {
+	int64 orderId = 1 [(validate.rules).int64 = {gt:0}];
+	int32 score = 2 [(validate.rules).int32 = {gt:0,lte:5}];		// 商品打分
+	int32 serviceScore = 3 [(validate.rules).int32 = {gt:0,lte:5}];	// 服务打分
+	int32 expressScore = 4 [(validate.rules).int32 = {gt:0,lte:5}];	// 物流打分
+	string content = 5 [(validate.rules).string = {min_len:8 ,max_len:255}];
+	string picInfo = 6;		// 图片地址 cdn
+	string videoInfo = 7;
+	bool anonymous = 8;		// 是否匿名
+}
+message CreateReviewReply {
+	int64 reviewId = 1;
+}

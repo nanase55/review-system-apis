@@ -16,6 +16,14 @@ service Customer {
 			body: "*"
 		};
 	};
+	rpc ListReviewByUserId (ListReviewByUserIdRequest) returns (ListReviewByUserIdReply) {
+		option (google.api.http) = {
+			get: "c/v1/reviews",
+			additional_bindings {
+				get: "c/v1/reviews?lastId={lastId}&size={size}"
+			}
+		};
+	}
 }
 
 message CreateReviewRequest {
@@ -30,4 +38,27 @@ message CreateReviewRequest {
 }
 message CreateReviewReply {
 	int64 reviewId = 1;
+}
+
+// 用户评价列表的请求
+message ListReviewByUserIdRequest{
+	int64 lastId = 1 [(validate.rules).int64 = {gte: 0}];
+	int32 size = 2 [(validate.rules).int32 = {gt: 0,lt: 50}];
+}
+// 用户评价列表的返回值
+message ListReviewByUserIdReply{
+	repeated ReviewInfo list = 1;
+	int64 lastId = 2;
+}
+// 评价信息
+message ReviewInfo{
+	int64 reviewId = 1;
+	int64 orderId = 2;
+	int32 score = 3;
+	int32 serviceScore = 4;
+	int32 expressScore = 5;
+	string content = 6;
+	string picInfo = 7;
+	string videoInfo = 8;
+	int32 status = 9;
 }

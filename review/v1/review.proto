@@ -63,10 +63,13 @@ service Review {
 			body: "*"
 		};
 	}
+
+	// 分页查询店铺的商品评价
+	rpc ListReviewByStoreAndSpu (ListReviewByStoreAndSpuRequest) returns (ListReviewByStoreAndSpuReply);
 }
 
 message CreateReviewRequest {
-	int64 userId = 1 [(validate.rules).int64 = {gt:0}];
+	string userId = 1 [(validate.rules).string = {min_len:1 ,max_len:128}];
 	int64 orderId = 2 [(validate.rules).int64 = {gt:0}];
 	int32 score = 3 [(validate.rules).int32 = {gt:0,lte:5}];		// 商品打分
 	int32 serviceScore = 4 [(validate.rules).int32 = {gt:0,lte:5}];	// 服务打分
@@ -92,7 +95,7 @@ message GetReviewReply {
 // 评价信息
 message ReviewInfo{
 	int64 reviewId = 1;
-	int64 userId = 2;
+	string userId = 2;
 	int64 orderId = 3;
 	int32 score = 4;
 	int32 serviceScore = 5;
@@ -105,7 +108,7 @@ message ReviewInfo{
 
 // 用户评价列表的请求
 message ListReviewByUserIdRequest{
-	int64 userId = 1 [(validate.rules).int64 = {gt: 0}];
+	string userId = 1 [(validate.rules).string = {min_len:8 ,max_len:128}];
 	int64 lastId = 2 [(validate.rules).int64 = {gte: 0}];
 	int32 size = 3 [(validate.rules).int32 = {gt: 0,lt: 50}];
 }
@@ -118,7 +121,7 @@ message ListReviewByUserIdReply{
 // 回复评价的请求
 message ReplyReviewRequest{
 	int64 reviewId = 1 [(validate.rules).int64 = {gt: 0}];
-	int64 storeId = 2 [(validate.rules).int64 = {gt: 0}];
+	string storeId = 2 [(validate.rules).string = {min_len:8 ,max_len:128}];
 	string content = 3 [(validate.rules).string = {min_len: 2, max_len:200}];
 	string picInfo = 4;
 	string videoInfo = 5;
@@ -131,7 +134,7 @@ message ReplyReviewReply{
 // AppealReviewRequest 申诉评价的请求参数
 message AppealReviewRequest{
 	int64 reviewId = 1 [(validate.rules).int64 = {gt: 0}];
-	int64 storeId = 2 [(validate.rules).int64 = {gt: 0}];
+	string storeId = 2 [(validate.rules).string = {min_len:8 ,max_len:128}];
 	string reason = 3 [(validate.rules).string = {min_len: 2, max_len:200}];
 	string content = 4 [(validate.rules).string = {min_len: 2, max_len:200}];
 	string picInfo = 5;
@@ -168,4 +171,19 @@ message AuditAppealRequest{
 // 对申诉进行审核的返回值
 message AuditAppealReply{
 	int64 appealId = 1;
+}
+
+message ListReviewByStoreAndSpuRequest {
+    string storeId = 1 [(validate.rules).string = {min_len:8 ,max_len:128}]; // 店铺ID
+    int64 spuId = 2 [(validate.rules).int64 = {gt: 0}];   // 商品SPU ID
+    int32 size = 3 [(validate.rules).int32 = {gt: 0, lt: 50}]; // 每页大小
+    int64 lastId = 4 [(validate.rules).int64 = {gte: 0}]; // 上一页最后一条记录的 ReviewID，用于分页
+    string sortField = 5 [(validate.rules).string = {in: ["score", "service_score", "express_score"]}]; // 排序字段
+    string sortOrder = 6 [(validate.rules).string = {in: ["asc", "desc"]}]; // 排序顺序
+	int32 sortValue = 7;	 	  // 上一页最后一条记录的分数，用于分页
+}
+message ListReviewByStoreAndSpuReply {
+    repeated ReviewInfo list = 1; // 评价列表
+    int64 lastId = 2;             // 当前页最后一条记录的ReviewID
+	int32 sortValue = 3;	 	  // 当前页最后一条记录的分数
 }

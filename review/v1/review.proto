@@ -108,7 +108,7 @@ message ReviewInfo{
 
 // 用户评价列表的请求
 message ListReviewByUserIdRequest{
-	string userId = 1 [(validate.rules).string = {min_len:8 ,max_len:128}];
+	string userId = 1 [(validate.rules).string = {min_len:1 ,max_len:128}];
 	int64 lastId = 2 [(validate.rules).int64 = {gte: 0}];
 	int32 size = 3 [(validate.rules).int32 = {gt: 0,lt: 50}];
 }
@@ -121,8 +121,8 @@ message ListReviewByUserIdReply{
 // 回复评价的请求
 message ReplyReviewRequest{
 	int64 reviewId = 1 [(validate.rules).int64 = {gt: 0}];
-	string storeId = 2 [(validate.rules).string = {min_len:8 ,max_len:128}];
-	string content = 3 [(validate.rules).string = {min_len: 2, max_len:200}];
+	string storeId = 2 [(validate.rules).string = {min_len:1 ,max_len:128}];
+	string content = 3 [(validate.rules).string = {min_len:2, max_len:200}];
 	string picInfo = 4;
 	string videoInfo = 5;
 }
@@ -134,7 +134,7 @@ message ReplyReviewReply{
 // AppealReviewRequest 申诉评价的请求参数
 message AppealReviewRequest{
 	int64 reviewId = 1 [(validate.rules).int64 = {gt: 0}];
-	string storeId = 2 [(validate.rules).string = {min_len:8 ,max_len:128}];
+	string storeId = 2 [(validate.rules).string = {min_len:1 ,max_len:128}];
 	string reason = 3 [(validate.rules).string = {min_len: 2, max_len:200}];
 	string content = 4 [(validate.rules).string = {min_len: 2, max_len:200}];
 	string picInfo = 5;
@@ -174,7 +174,7 @@ message AuditAppealReply{
 }
 
 message ListReviewByStoreAndSpuRequest {
-    string storeId = 1 [(validate.rules).string = {min_len:8 ,max_len:128}]; // 店铺ID
+    string storeId = 1 [(validate.rules).string = {min_len:1 ,max_len:128}]; // 店铺ID
     int64 spuId = 2 [(validate.rules).int64 = {gt: 0}];   // 商品SPU ID
     int32 size = 3 [(validate.rules).int32 = {gt: 0, lt: 50}]; // 每页大小
     int64 lastId = 4 [(validate.rules).int64 = {gte: 0}]; // 上一页最后一条记录的 ReviewID，用于分页

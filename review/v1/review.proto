@@ -181,6 +181,9 @@ message ListReviewByStoreAndSpuRequest {
     string sortField = 5 [(validate.rules).string = {in: ["score", "service_score", "express_score"]}]; // 排序字段
     string sortOrder = 6 [(validate.rules).string = {in: ["asc", "desc"]}]; // 排序顺序
 	int32 sortValue = 7;	 	  // 上一页最后一条记录的分数，用于分页
+	int32 hasMedia = 8;
+	int32 hasReply = 9;
+	string keywords = 10 [(validate.rules).string = {min_len:0 ,max_len:5}];
 }
 message ListReviewByStoreAndSpuReply {
     repeated ReviewInfo list = 1; // 评价列表
